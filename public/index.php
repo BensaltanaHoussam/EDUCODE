@@ -1,3 +1,12 @@
+<?php 
+
+
+require_once __DIR__ . '/../app/database/Database.php';
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

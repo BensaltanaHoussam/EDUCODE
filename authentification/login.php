@@ -1,46 +1,5 @@
-<?php
-require_once '../app/class/user.php';
 
 
-session_start();
-
-
-$error = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = htmlspecialchars(trim($_POST['email'] ?? ''));
-    $password = $_POST['password'] ?? '';
-    if (empty($email) || empty($password)) {
-        $error = 'Veuillez remplir tous les champs';
-    } else {
-        try {
-            $user = User::getByEmail($email);
-            if ($user && password_verify($password, $user['mot_de_passe'])) {
-                // Set session variables
-                $_SESSION['user_id'] = $user['id_user'];
-                $_SESSION['user_email'] = $user['email'];
-                $_SESSION['user_fullname'] = $user['fullname'];
-                $_SESSION['user_role'] = $user['id_role_fk'];
-                if ($user['id_role_fk'] == 1) {
-                    // Admin redirect
-                    header('Location: ../Dashboard/index.php');
-                    exit();
-                } else if ($user['id_role_fk'] == 2) {
-                   
-                    header('Location: ../public/home.php');
-                    exit();
-                }
-            } else {
-                $error = 'Email ou mot de passe incorrect';
-                error_log("Failed login attempt for email: $email");
-            }
-        } catch (Exception $e) {
-            $error = 'Une erreur est survenue. Veuillez réessayer.';
-            error_log("Login error: " . $e->getMessage());
-        }
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -48,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vroom</title>
+    <title>EDUCODE</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -70,66 +29,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    <section class="bg-[url('../public/img/landingPageBG.jpg')] bg-cover bg-center ">
-        <div class="flex    md:h-screen lg:py-0">
-
-            <div
-                class="w-[45%] flex flex-col justify-center px-8 border-r-2 border-r-white bg-black    h-[100vh] bg-  sblackhadow-xl shadow-white/40">
-                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 class="text-2xl font-bold text-white ">
-                        Login
-                    </h1>
-                    <form action="login.php" method="post" class="space-y-4 md:space-y-6">
-                        <div>
-                            <label for="email" class="block mb-2 text-sm text-white">Your email</label>
-                            <input type="email" name="email" id="email"
-                                class="w-full p-3 border-2 border-white  rounded-xl text-sm "
-                                placeholder="name@company.com" required="">
-                        </div>
-                        <div>
-                            <label for="password" class="block mb-2 text-sm text-white">Your password</label>
-                            <input type="password" name="password" id="password" class="w-full p-3  rounded-xl text-sm"
-                                placeholder="********" required="">
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-start">
-                                <div class="flex items-center h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox"
-                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                        required="">
-                                </div>
-                                <div class="ml-3 text-sm">
-                                    <label for="remember" class="text-white">Remember me</label>
-                                </div>
+    <section>
+        <!-- Container -->
+        <div class="grid gap-0 md:h-screen md:grid-cols-2">
+            <!-- Component -->
+            <div class="flex items-center justify-center px-5 py-16 md:px-10 md:py-20">
+                <div class="max-w-md text-center">
+                    <h2 class="mb-8 text-3xl font-bold md:mb-12 md:text-5xl lg:mb-16"> Start your 14-day free trial
+                    </h2>
+                    <!-- Form -->
+                    <div class="mx-auto max-w-sm mb-4 pb-4">
+                        <form name="wf-form-password" method="get">
+                            <div class="relative">
+                                <img alt=""
+                                    src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a9455fae6cf89_EnvelopeSimple.svg"
+                                    class="absolute left-5 top-3 inline-block" />
+                                <input type="email"
+                                    class="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-black placeholder:text-black"
+                                    placeholder="Email Address" required="" />
                             </div>
-                            <a href="#" class="text-sm font-medium text-primary-600 hover:underline text-white">Forgot
-                                password?</a>
-                        </div>
-                        <button 
-                            class="w-full text-black rounded-2xl bg-white text-center py-2 hover:bg-black border-2 hover:text-white hover:border-2 border-white transform duration-300"> Login</button>
-                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Don’t have an account yet? <a href="signup.php"
-                                class="font-medium text-white hover:underline dark:text-primary-500">Sign up</a>
-                        </p>
-                    </form>
+                            <div class="relative mb-4">
+                                <img alt=""
+                                    src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a946794e6cf8a_Lock-2.svg"
+                                    class="absolute left-5 top-3 inline-block" />
+                                <input type="password"
+                                    class="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-black placeholder:text-black"
+                                    placeholder="Password (min 8 characters)" required="" />
+                            </div>
+                            <label class="mb-6 flex items-center justify-start pb-12 pl-5 font-medium md:mb-10 lg:mb-1">
+                                <input type="checkbox" name="checkbox" class="float-left mt-1" />
+                                <span class="ml-4 inline-block cursor-pointer text-sm" htmlFor="checkbox"> I agree with
+                                    the <a href="#" class="font-bold"> Terms &amp; Conditions </a>
+                                </span>
+                            </label>
+                            <input type="submit" value="Login"
+                                class="inline-block w-full cursor-pointer items-center bg-black px-6 py-3 text-center font-semibold text-white" />
+                        </form>
+                    </div>
+                    <p class="text-sm text-gray-500 sm:text-sm"> Already have an account? <a href="#"
+                            class="font-bold text-black">
+                            <span> </span> Login now
+                        </a>
+                    </p>
                 </div>
             </div>
-
-            <div class="flex flex-col justify-center px-8">
-            <h2 class="text-balance text-slate-100 font-semibold w-[450px]  text-5xl"><span
-                        class="text-white font-light">VROOM</span> the perfect car rental experience!</h2>
-                <p class="mt-6 text-pretty text-lg/8 w-[550px] font-light  text-gray-100">Ready to hit the road? Take
-                    the wheel of your perfect car today! Whether it's for a weekend getaway, a business trip, or just
-                    exploring your city, we’ve got the ideal vehicle waiting for you. With quick booking, flexible
-                    rental terms, and the best prices around, it's never been easier to drive in comfort and style.
-                    Don't wait—your next adventure starts now!</p>
-              
-                
+            <!-- Component -->
+            <div class="flex items-center justify-center bg-gray-100">
+                <div class="mx-auto max-w-md px-5 py-16 md:px-10 md:py-24 lg:py-32">
+                    <div class="mb-5 flex h-14 w-14 flex-col items-center justify-center bg-white md:mb-6 lg:mb-8">
+                        <img src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a949eade6cf7d_Vector-2.svg"
+                            alt="" class="inline-block" />
+                    </div>
+                    <p class="mb-8 text-sm sm:text-base md:mb-12 lg:mb-16"> Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna,
+                        porttitor rhoncus dolor purus non enim. </p>
+                    <p class="text-sm font-bold sm:text-base">John Robert</p>
+                    <p class="text-sm sm:text-sm">Senior Webflow Developer</p>
+                </div>
             </div>
-
         </div>
     </section>
-
 
 
 
