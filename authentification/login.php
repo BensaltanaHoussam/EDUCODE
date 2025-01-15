@@ -1,6 +1,37 @@
+<?php
+session_start();
+require_once '../app/database/Database.php';
 
+$db = new Database();
+$conn = $db->connect();
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
+    $query = "SELECT * FROM utilisateurs WHERE email = :email";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['mot_de_passe'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_role'] = $user['role'];
+
+        if ($user['role'] == 'Etudiant') {
+            header('Location: ../Dashboard/student/page/index.php');
+        } elseif ($user['role'] == 'Enseignant') {
+            header('Location: ../Dashboard/teacher/page/index.php');
+        } elseif ($user['role'] == 'Administrateur') {
+            header('Location: ../Dashboard/admin/page/index.php');
+        }
+        exit();
+    } else {
+        $error = "Invalid email or password.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -27,8 +58,6 @@
 
 
 
-
-
     <section>
         <!-- Container -->
         <div class="grid gap-0 md:h-screen md:grid-cols-2">
@@ -39,12 +68,12 @@
                     </h2>
                     <!-- Form -->
                     <div class="mx-auto max-w-sm mb-4 pb-4">
-                        <form name="wf-form-password" method="get">
+                        <form name="wf-form-password" method="post">
                             <div class="relative">
                                 <img alt=""
                                     src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a9455fae6cf89_EnvelopeSimple.svg"
                                     class="absolute left-5 top-3 inline-block" />
-                                <input type="email"
+                                <input type="email" name="email"
                                     class="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-black placeholder:text-black"
                                     placeholder="Email Address" required="" />
                             </div>
@@ -52,7 +81,7 @@
                                 <img alt=""
                                     src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a946794e6cf8a_Lock-2.svg"
                                     class="absolute left-5 top-3 inline-block" />
-                                <input type="password"
+                                <input type="password" name="password"
                                     class="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-black placeholder:text-black"
                                     placeholder="Password (min 8 characters)" required="" />
                             </div>
@@ -62,13 +91,16 @@
                                     the <a href="#" class="font-bold"> Terms &amp; Conditions </a>
                                 </span>
                             </label>
+                            <?php if (isset($error)): ?>
+                                <p class="text-red-500"><?php echo $error; ?></p>
+                            <?php endif; ?>
                             <input type="submit" value="Login"
                                 class="inline-block w-full cursor-pointer items-center bg-black px-6 py-3 text-center font-semibold text-white" />
                         </form>
                     </div>
-                    <p class="text-sm text-gray-500 sm:text-sm"> Already have an account? <a href="#"
+                    <p class="text-sm text-gray-500 sm:text-sm"> You dont have an account? <a href="./signup.php"
                             class="font-bold text-black">
-                            <span> </span> Login now
+                            <span> </span> SignUP now
                         </a>
                     </p>
                 </div>
@@ -89,12 +121,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
 
 
 

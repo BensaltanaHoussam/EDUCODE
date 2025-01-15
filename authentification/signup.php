@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     class="absolute left-5 top-3 inline-block" />
                                 <input type="text"
                                     class="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-black placeholder:text-black"
-                                    placeholder="fullname" name="fullname" required="" />
+                                    placeholder="FullName" name="fullname" required="" />
                             </div>
                             <div class="relative">
                                 <img alt=""
@@ -113,8 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     class="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-black placeholder:text-black"
                                     placeholder="Password (min 8 characters)" name="password" required="" />
                             </div>
-                            <div class="relative mb-4">
-                                <select name="role"
+                            <div class="relative mb-4 p-4">
+                                <select  name="role"
                                     class="mb-4 block w-full h-9 rounded-md border border-solid border-black px-3 py-2 text-sm text-black placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                     required="">
                                     <option value="" disabled selected class="text-gray-500">Select your role</option>
