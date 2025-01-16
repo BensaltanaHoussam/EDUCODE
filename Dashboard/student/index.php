@@ -1,15 +1,3 @@
-<?php 
-require_once __DIR__ . '/../app/database/Database.php';
-
-$database = new Database();
-$db = $database->connect();
-
-if ($db) {
-    echo "Database connection successful.";
-} else {
-    echo "Database connection failed.";
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +65,7 @@ if ($db) {
                     <div
                         class="flex flex-col px-6 py-6 lg:flex-row lg:items-center lg:justify-between lg:px-10 lg:py-4 xl:px-20">
                         <a href="#">
-                           <img class="w-[200px]" src="./img/LOOGO.png" alt="logo">
+                           <img class="w-[200px]" src="../../public/img/LOOGO.png" alt="logo">
                         </a>
                         <div
                             class="mt-14 flex flex-col space-y-8 lg:mt-0 lg:flex lg:flex-row lg:space-x-1 lg:space-y-0">
@@ -96,10 +84,9 @@ if ($db) {
                             </a>
                         </div>
                         <div class="flex flex-col space-y-8 lg:flex lg:flex-row lg:space-x-3 lg:space-y-0">
-                            <a href="#" class="font-inter rounded-lg lg:px-6 lg:py-4 lg: lg:hover:text-gray-800"> Sign
-                                Up </a>
+                            
                             <a class="font-inter rounded-lg bg-black px-8 py-4 text-center text-white hover:bg-gray-800"
-                                href="#"> Login </a>
+                                href="#"> Logout </a>
                         </div>
 
                     </div>
@@ -143,7 +130,7 @@ if ($db) {
                         </div>
                     </div>
                     <!-- Hero Image -->
-                    <img src="./img/walpaperj.jpg" alt="" class="inline-block h-full w-full max-w-2xl" />
+                    <img src="../../public/img/walpaperj.jpg" alt="" class="inline-block h-full w-full max-w-2xl" />
                 </div>
             </div>
         </header>
@@ -151,7 +138,7 @@ if ($db) {
 
 
     <!-- Courses Categories Section  -->
-    <section class=" py-8 px-4 bg-[url('./img/bg222.jpg')] bg-cover bg-center fade-in-on-scroll">
+    <section class=" py-8 px-4 bg-[url('../../public/img/bg222.jpg')] bg-cover bg-center fade-in-on-scroll">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl text-white font-bold mb-4 bg-black/30 p-2 rounded-2xl">
@@ -262,7 +249,7 @@ if ($db) {
 
                 <div
                     class="bg-white border border-blue-400 shadow-blue  rounded-lg shadow-md p-4 hover:scale-105 transition-transform fade-in-on-scroll">
-                    <img src="./img/course-04.jpg" alt="Course Image" class="rounded-t-lg w-full">
+                    <img src="../../public/img/course-04.jpg" alt="Course Image" class="rounded-t-lg w-full">
                     <div class="py-3">
                         <p class="text-sm text-gray-500 flex items-center space-x-2">
                             <span><i class="ri-calendar-line"></i> 20 Nov, 2023</span>
@@ -282,7 +269,7 @@ if ($db) {
 
                 <div
                     class="bg-white border border-blue-400 shadow-blue  rounded-lg shadow-md p-4 hover:scale-105 transition-transform fade-in-on-scroll">
-                    <img src="./img/course-11.jpg" alt="Course Image" class="rounded-t-lg w-full">
+                    <img src="../../public/img/course-11.jpg" alt="Course Image" class="rounded-t-lg w-full">
                     <div class="py-3">
                         <p class="text-sm text-gray-500 flex items-center space-x-2">
                             <span><i class="ri-calendar-line"></i> 18 Nov, 2023</span>
@@ -302,7 +289,7 @@ if ($db) {
 
                 <div
                     class="bg-white border border-blue-400 shadow-blue  rounded-lg shadow-md p-4 hover:scale-105 transition-transform fade-in-on-scroll">
-                    <img src="./img/course-02.jpg" alt="Course Image" class="rounded-t-lg w-full">
+                    <img src="../../public/img/course-02.jpg" alt="Course Image" class="rounded-t-lg w-full">
                     <div class="py-3">
                         <p class="text-sm text-gray-500 flex items-center space-x-2">
                             <span><i class="ri-calendar-line"></i> 15 Nov, 2023</span>
@@ -322,7 +309,7 @@ if ($db) {
 
                 <div
                     class="bg-white border border-blue-400 shadow-blue  rounded-lg shadow-md p-4 hover:scale-105 transition-transform fade-in-on-scroll">
-                    <img src="./img/course-04.jpg" alt="Course Image" class="rounded-t-lg w-full">
+                    <img src="../../public/img/course-04.jpg" alt="Course Image" class="rounded-t-lg w-full">
                     <div class="py-3">
                         <p class="text-sm text-gray-500 flex items-center space-x-2">
                             <span><i class="ri-calendar-line"></i> 12 Nov, 2023</span>
@@ -342,7 +329,7 @@ if ($db) {
 
                 <div
                     class="bg-white border border-blue-400 shadow-blue  rounded-lg shadow-md p-4 hover:scale-105 transition-transform fade-in-on-scroll">
-                    <img src="./img/course-05.jpg" alt="Course Image" class="rounded-t-lg w-full">
+                    <img src="../../public/img/course-05.jpg" alt="Course Image" class="rounded-t-lg w-full">
                     <div class="py-3">
                         <p class="text-sm text-gray-500 flex items-center space-x-2">
                             <span><i class="ri-calendar-line"></i> 10 Nov, 2023</span>
@@ -362,7 +349,7 @@ if ($db) {
 
                 <div
                     class="bg-white border border-blue-400 shadow-blue  rounded-lg shadow-md p-4 hover:scale-105 transition-transform fade-in-on-scroll">
-                    <img src="./img/course-06.jpg" alt="Course Image" class="rounded-t-lg w-full">
+                    <img src="../../public/img/course-06.jpg" alt="Course Image" class="rounded-t-lg w-full">
                     <div class="py-3">
                         <p class="text-sm text-gray-500 flex items-center space-x-2">
                             <span><i class="ri-calendar-line"></i> 8 Nov, 2023</span>
@@ -399,7 +386,7 @@ if ($db) {
                 <!-- Item -->
                 <div
                     class="grid w-full grid-flow-row justify-center gap-6 rounded-md border border-solid border-gray-300 p-8 md:grid-cols-2">
-                    <img src="./img/pr1.jpg" alt="" class="inline-block h-72 w-full object-cover" />
+                    <img src="../../public/img/pr1.jpg" alt="" class="inline-block h-72 w-full object-cover" />
                     <div>
                         <p class="text-xl font-semibold">John</p>
                         <p class="mb-4 font-semibold text-gray-500"> Webflow Developer </p>
@@ -411,7 +398,7 @@ if ($db) {
                 <!-- Item -->
                 <div
                     class="grid w-full grid-flow-row justify-center gap-6 rounded-md border border-solid border-gray-300 p-8 md:grid-cols-2">
-                    <img src="./img/pr2.jpg" alt="" class="inline-block h-72 w-full object-cover" />
+                    <img src="../../public/img/pr2.jpg" alt="" class="inline-block h-72 w-full object-cover" />
                     <div>
                         <p class="text-xl font-semibold">Anniyah</p>
                         <p class="mb-4 font-semibold text-gray-500"> Webflow Developer </p>
@@ -423,7 +410,7 @@ if ($db) {
                 <!-- Item -->
                 <div
                     class="grid w-full grid-flow-row justify-center gap-6 rounded-md border border-solid border-gray-300 p-8 md:grid-cols-2">
-                    <img src="./img/pr3.webp" alt="" class="inline-block h-72 w-full object-cover" />
+                    <img src="../../public/img/pr3.webp" alt="" class="inline-block h-72 w-full object-cover" />
                     <div>
                         <p class="text-xl font-semibold">Kevin</p>
                         <p class="mb-4 font-semibold text-gray-500"> Webflow Developer </p>
@@ -435,7 +422,7 @@ if ($db) {
                 <!-- Item -->
                 <div
                     class="grid w-full grid-flow-row justify-center gap-6 rounded-md border border-solid border-gray-300 p-8 md:grid-cols-2">
-                    <img src="./img/pr1.jpg" alt="" class="inline-block h-72 w-full object-cover" />
+                    <img src="../../public/img/pr1.jpg" alt="" class="inline-block h-72 w-full object-cover" />
                     <div>
                         <p class="text-xl font-semibold">Tamara</p>
                         <p class="mb-4 font-semibold">Webflow Developer</p>
@@ -460,7 +447,7 @@ if ($db) {
             <div class="mx-auto grid grid-cols-1 items-center gap-x-20 gap-y-10 sm:gap-y-14 md:grid-cols-2">
                 <!-- Image -->
                 <div class="place-self-stretch overflow-hidden rounded-lg">
-                    <img src="./img/walpaper.jpg" alt=""
+                    <img src="../../public/img/walpaper.jpg" alt=""
                         class="inline-block h-full w-full max-w-lg object-cover" />
                 </div>
                 <!-- Contents -->
@@ -559,7 +546,7 @@ if ($db) {
             <!-- Component -->
             <div class="flex-col flex items-center">
                 <a href="#" class="mb-8 inline-block max-w-full text-black">
-                    <img src="./img/LOOGO.png"
+                    <img src="../../public/img/LOOGO.png"
                         alt="" class="inline-block max-h-10" />
                 </a>
                 <div class="text-center font-semibold">
