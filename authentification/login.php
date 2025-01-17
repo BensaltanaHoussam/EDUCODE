@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_role'] = $user['role'];
 
         if ($user['role'] == 'Etudiant') {
-            header('Location: ../Dashboard/student/page/index.php');
+            header('Location: ../Dashboard/student/index.php');
         } elseif ($user['role'] == 'Enseignant') {
-            header('Location: ../Dashboard/teacher/page/welcome.php');
+            header('Location: ../Dashboard/teacher/welcome.php');
         } elseif ($user['role'] == 'Administrateur') {
-            header('Location: ../Dashboard/admin/page/index.php');
+            header('Location: ../Dashboard/admin/index.php');
         }
         exit();
     } else {

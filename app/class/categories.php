@@ -20,11 +20,11 @@ class categories {
         }
     }
 
-    public function editBlog($nom, $description) {
-        $query = "UPDATE categories SET nom = :nom, description = :description";
+    public function editCategory($id, $nom, $description): bool {
+        $query = "UPDATE categories SET nom = :nom, description = :description WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
-        
+        $stmt->bindParam(':id', $id);
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':description', $description);
 
@@ -35,8 +35,8 @@ class categories {
         }
     }
 
-    public function deleteBlog($id) {
-        $query = "DELETE FROM blogs WHERE id_blog = :id";
+    public function deleteCategorie($id) {
+        $query = "DELETE FROM categories WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(':id', $id);

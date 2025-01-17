@@ -121,12 +121,11 @@ $categoriesList = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($category['nom']); ?>
                                     </td>
+                                    <td class=" px-4 py-2"><?php echo htmlspecialchars($category['description']); ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <?php echo htmlspecialchars($category['description']); ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="edit.php?id=<?php echo htmlspecialchars($category['id']); ?>"
-                                            class="text-blue-600 hover:text-blue-900">Modifier</a>
-                                        <form action="delete.php" method="POST" class="inline">
+                                        <a onclick="openEditModal('<?php echo htmlspecialchars($category['id']); ?>', '<?php echo htmlspecialchars($category['nom']); ?>', '<?php echo htmlspecialchars($category['description']); ?>')"
+                                            href="javascript:void(0);" class="text-blue-600 hover:text-blue-900">Modifier</a>
+                                        <form action="../../app/action/admin/categorie/delete.php" method="GET" class="inline">
                                             <input type="hidden" name="id"
                                                 value="<?php echo htmlspecialchars($category['id']); ?>">
                                             <button type="submit"
@@ -214,6 +213,58 @@ $categoriesList = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
 
+        <!-- Edit Blog Modal -->
+        <div id="editBlogModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-xl max-w-md w-full mx-4 shadow-2xl">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-black">Edit Blog</h3>
+                        <button onclick="closeEditModal()" class="text-gray-400 hover:text-white transition-colors"
+                            aria-label="Fermer">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <form id="editBlogForm" action="../../app/action/admin/categorie/edit.php" method="POST"
+                        class="space-y-4" onsubmit="handleSubmit(event)">
+                        <input type="hidden" id="editCategoryId" name="id">
+                        <div>
+                            <label for="editCategoryName" class="block text-sm font-medium text-gray-700 mb-2">Category
+                                Name</label>
+                            <input type="text" id="editCategoryName" name="categoryName" required
+                                class="w-full bg-gray-800 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-600 transition-all border border-gray-700"
+                                placeholder="Enter the name of the category">
+                            <div class="text-red-500 text-xs mt-1 hidden" id="editCategoryNameError"></div>
+                        </div>
+
+                        <div>
+                            <label for="editCategoryDescription"
+                                class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <textarea id="editCategoryDescription" name="categoryDescription" required
+                                class="w-full bg-gray-800 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-600 transition-all border border-gray-700"
+                                rows="8" placeholder="Write a description"></textarea>
+                            <div class="text-red-500 text-xs mt-1 hidden" id="editCategoryDescriptionError"></div>
+                        </div>
+
+                        <div class="flex justify-end space-x-3 pt-4">
+                            <button type="button" onclick="closeEditModal()"
+                                class="px-4 py-2 bg-white text-black border-black border-2 rounded-lg hover:bg-black hover:text-white transition-colors">
+                                Cancel
+                            </button>
+                            <button type="submit" id="submitBtn"
+                                class="px-4 py-2 bg-black text-white border-black border-2 rounded-lg hover:bg-white hover:text-black transition-colors">
+                                <span>Save</span>
+                                <div id="loadingSpinner" class="hidden ml-2">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
 
 
         <script>
@@ -226,6 +277,27 @@ $categoriesList = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const modal = document.getElementById('addBlogModal');
                 modal.classList.add('hidden');
                 document.getElementById('addBlogForm').reset();
+            }
+
+            function openEditModal(id, name, description) {
+                document.getElementById('editCategoryId').value = id;
+                document.getElementById('editCategoryName').value = name;
+                document.getElementById('editCategoryDescription').value = description;
+                document.getElementById('editBlogModal').classList.remove('hidden');
+                document.getElementById('editBlogModal').classList.add('flex');
+            }
+
+            function closeEditModal() {
+                const modal = document.getElementById('editBlogModal');
+                modal.classList.add('hidden');
+                document.getElementById('editBlogForm').reset();
+            }
+
+
+            function deleteBlog(id) {
+                if (confirm('Are you sure you want to delete this blog?')) {
+                    window.location.href = '../../app/action/admin/bloger/delete.php?id=' + id;
+                }
             }
 
         </script>
